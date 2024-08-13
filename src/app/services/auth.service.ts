@@ -10,8 +10,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(identificacion: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { identificacion, password });
+  login(identification: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, { identification, password });
+  }
+
+  createUser(identification: string, password: string, advancedUser: boolean) {
+    let url : string = `${this.apiUrl}/register`
+    if (advancedUser) {
+      url += 'Advanced'
+    }
+    return this.http.post<any>(url, { identification, password });
   }
 
   storeUserData(data: any) {
