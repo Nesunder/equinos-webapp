@@ -1,1 +1,22 @@
-<h1>Bienvenido al Home</h1>
+<div class="home-container">
+  <app-header></app-header>
+  <mat-sidenav-container class="home-sidenav-container">
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="opened"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar class="home-toolbar" [hidden]="mobileQuery.matches ? false : true">
+
+        <button #menubutton mat-fab extended class="menu-button" (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+          <span class="home-app-name">Menu</span>
+        </button>
+
+      </mat-toolbar>
+      <app-image-grid></app-image-grid>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <app-footer></app-footer>
+</div>

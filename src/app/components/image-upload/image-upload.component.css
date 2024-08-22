@@ -1,0 +1,29 @@
+.upload-button {
+  max-width: 100%; /* El botón no puede ser más ancho que el contenedor */
+  max-height: 100%; /* El botón no puede ser más alto que el contenedor */
+  width: 12vw; /* El botón no puede ser más alto que el contenedor */
+  height: 16vh; /* La altura se ajusta automáticamente */
+  border: 2px dashed #ccc;
+  padding: 20px;  
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box; /* Incluye el padding en el tamaño total */
+  border-radius: 5%;
+}
+
+.upload-button .upload {
+  display: flex;
+  flex-direction: column; /* Coloca el contenido en una columna */
+  align-items: center;
+}
+
+.upload-container mat-icon {
+  font-size: 2vw;  /* Ajusta el tamaño del ícono según sea necesario */ 
+  padding-bottom: 32px;
+  padding-right: 34px;
+}
+
+.upload-container span {
+  margin-top: 5px;
+  font-size: 0.7vw; 
+}

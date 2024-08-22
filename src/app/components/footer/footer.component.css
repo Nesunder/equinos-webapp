@@ -1,0 +1,11 @@
+.wrapper {
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--header-color);
+}
+
+p {
+    font-weight: 500 ;
+    color: var(--text-color);
+}

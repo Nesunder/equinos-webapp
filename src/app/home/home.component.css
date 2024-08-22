@@ -1,0 +1,91 @@
+.mat-drawer-container {
+    color: var(--text-color);
+    background-color: var(--background-color)
+}
+
+.mat-drawer {
+    padding: 10px;
+    border-radius: 0;
+    padding-left: 30px;
+    color: var(--text-color);
+    background-color: var(--drawer-color);
+}
+
+.mat-drawer-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidenav-container {
+    height: 100vh;
+}
+
+mat-sidenav {
+    width: 280px;
+    transition: width 0.2s ease-in-out;
+}
+
+@media(max-width: 1000px) {
+    mat-sidenav {
+        width: 250px;
+    }
+}
+
+app-image-grid {
+    padding: 25px;
+}
+
+.mat-mdc-extended-fab {
+    background-color: var(--header-color);
+    box-shadow: none;
+    color: var(--text-color);
+    height: 50px;
+}
+
+.mat-mdc-extended-fab:hover {
+    box-shadow: none;
+    background-color: var(--hover-button-color);
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.home-toolbar {
+    background-color: var(--header-color);
+    justify-content: center;
+    min-height: fit-content;
+    height: 60px;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+}
+
+.home-is-mobile .home-toolbar {
+    position: fixed;
+    justify-content: flex-end; 
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+span.example-app-name {
+    margin-left: 8px;
+    margin-right: 16px;
+}
+
+.home-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.home-is-mobile .home-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}

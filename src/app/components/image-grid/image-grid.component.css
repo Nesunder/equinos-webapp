@@ -1,0 +1,9 @@
+.upload-button-container {
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-grid-list {
+  flex-grow: 1;
+}

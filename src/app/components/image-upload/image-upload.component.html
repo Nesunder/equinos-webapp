@@ -1,0 +1,7 @@
+<input type="file" (change)="onFileSelected($event)" hidden #fileInput>
+<button mat-icon-button class="upload-button" (click)="fileInput.click()">
+    <div class="upload" >
+        <mat-icon>cloud_upload</mat-icon>
+        <span>Drop photos here, <br> or click to select files </span>
+    </div>
+</button>

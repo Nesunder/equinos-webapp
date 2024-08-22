@@ -1,0 +1,21 @@
+.wrapper {
+    height: 56px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bg-dark {
+    background-color: var(--header-color) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand {
+    justify-content: flex-start; /* Asegura que los elementos estén alineados a la izquierda */
+}
+
+.container {
+    padding-left: 30px;
+    max-width: 100%; /* Asegura que el contenedor ocupe todo el ancho de la pantalla */
+}
+
+
