@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, inject, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
-import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 import { ImageUploadComponent } from '../components/image-upload/image-upload.component';
 import { ImageGridComponent } from '../components/image-grid/image-grid.component';
 import { HeaderComponent } from "../components/header/header.component";
@@ -12,12 +11,13 @@ import { FooterComponent } from "../components/footer/footer.component";
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { AnalysisComponent } from "../components/analysis/analysis.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatSidenavModule, SidebarComponent, SearchBarComponent, ImageUploadComponent,
-    ImageGridComponent, HeaderComponent, MatToolbar, MatIcon, FooterComponent, MatButtonModule, MatIconModule, MatDividerModule],
+  imports: [MatSidenavModule, SidebarComponent, ImageUploadComponent,
+    ImageGridComponent, HeaderComponent, MatToolbar, MatIcon, FooterComponent, MatButtonModule, MatIconModule, MatDividerModule, AnalysisComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -41,7 +41,6 @@ export class HomeComponent {
 
   toggleSidenav() {
     this.sidenav.toggle();
-    this.menubutton.nativeElement.blur()
   }
 
   ngOnDestroy(): void {

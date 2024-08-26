@@ -1,27 +1,29 @@
 /* Tema claro */
 :root {
-    --background-color: #ffffff;
-    --text-color: #252525;
-    --text-color-inverted: #ffffff;
-    --border-color: rgb(230, 230, 230);
-    --header-color:  #d7e3ff;
-    --drawer-color: #d7e3ff;
-    --toolbar-color: #e1eaff;
-    --hover-button-color:  #d7e3ff;
-    /* Otros estilos específicos para el tema claro */
+  --background-color: #ffffff;
+  --text-color: #252525;
+  --text-color-inverted: #ffffff;
+  --border-color: rgb(230, 230, 230);
+  --header-color: #d7e3ff;
+  --drawer-color: rgb(239, 244, 255);
+  --toolbar-color: #e1eaff;
+  --hover-button-color: #d7e3ff;
+  /* Otros estilos específicos para el tema claro */
+}
+
+/* Tema oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #252525;
+    --text-color: #ffffff;
+    --text-color-inverted: #252525;
+    --border-color: rgb(120, 120, 120);
+    --header-color: rgb(45, 54, 64);
+    --drawer-color: #313131;
+    --toolbar-color: rgb(67, 80, 96);
+    --hover-button-color: rgb(54, 65, 77);
+    /* Otros estilos específicos para el tema oscuro */
   }
-  
-  /* Tema oscuro */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background-color: #252525;
-      --text-color: #ffffff;
-      --text-color-inverted: #252525;
-      --border-color: rgb(120, 120, 120);
-      --header-color: rgb(45, 54, 64);
-      --drawer-color: rgb(45, 54, 64);
-      --toolbar-color: rgb(67, 80, 96);
-      --hover-button-color: rgb(54, 65, 77);
-      /* Otros estilos específicos para el tema oscuro */
-    }
-  }
+}
+
+/*--drawer-color: rgb(45, 54, 64); */
