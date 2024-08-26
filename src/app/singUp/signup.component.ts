@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 export class SignUpComponent {
-  signupData = { identificacion: '', password: '', advancedUser: false };
+  signupData = { username: '', email: 'ejemplo@gmail.com', password: '', advancedUser: false };
   confirmPassword: string = '';
   passwordsDoNotMatch: boolean = false;
 
@@ -30,7 +29,7 @@ export class SignUpComponent {
     }
     this.passwordsDoNotMatch = false;
 
-    this.authService.createUser(this.signupData.identificacion, this.signupData.password, this.signupData.advancedUser)
+    this.authService.createUser(this.signupData.username, this.signupData.email, this.signupData.password, this.signupData.advancedUser)
     .subscribe({
       next: response => {
         console.log('Respuesta del servidor:', response);

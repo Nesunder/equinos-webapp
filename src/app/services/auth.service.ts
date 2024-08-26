@@ -8,18 +8,20 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://localhost:8080/api/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(identification: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, { identification, password });
   }
 
-  createUser(identification: string, password: string, advancedUser: boolean) {
-    let url : string = `${this.apiUrl}/register`
+  createUser(username: string, email: string, password: string, advancedUser: boolean) {
+    let url: string = `${this.apiUrl}/register`
     if (advancedUser) {
       url += 'Advanced'
     }
-    return this.http.post<any>(url, { identification, password });
+    console.log(username, email, password);
+    
+    return this.http.post<any>(url, { username, email, password });
   }
 
   storeUserData(data: any) {
