@@ -1,0 +1,31 @@
+.card {
+  background: var(--surface-card);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  width: 300px;
+
+  .title {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  p-image img {
+    aspect-ratio: 1;
+    object-fit: contain;
+    margin: 10px;
+  }
+
+  .user {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .user-name {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+}

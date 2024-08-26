@@ -1,12 +1,8 @@
-<mat-grid-list class="ps-2 flex-grow-1" cols="5" rowHeight="1:1" gutterSize="16px">
-  <mat-grid-tile>
-    <div class="upload-button-container row wrap">
-      <app-image-upload></app-image-upload>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile *ngFor="let image of images">
-    <div class="image-container row wrap space-between">
-      <img [src]="image.url" alt="Image" class="image">
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="columns">
+  <div class="rows wrap gap-3">
+    <app-analysis
+      *ngFor="let analysis of analyses"
+      [analysis]="analysis"
+    ></app-analysis>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="columns gap-1 wrapper p-2">
+  <h2 class="title">Caballo: {{ analysis.horse?.name }}</h2>
+
+  <span>
+    Resultado predicción:
+    {{ analysis.predictionDetail?.prediction?.toLowerCase() }}
+  </span>
+
+  <p-image
+    class="img"
+    [src]="imageUrl"
+    alt="Image"
+    width="300px"
+    [preview]="true"
+  />
+
+  <div class="rows">
+    <span class="m-1 user"> Usuario: </span>
+    <span class="m-1 user-name"> {{analysis.user?.username}} </span>
+  </div>
+</div>

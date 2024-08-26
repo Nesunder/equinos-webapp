@@ -3,7 +3,3 @@
   justify-content: center;
   align-items: center;
 }
-
-mat-grid-list {
-  flex-grow: 1;
-}
