@@ -31,4 +31,8 @@ export class AuthService {
     localStorage.setItem('email', data.email);
     localStorage.setItem('username', data.username);
   }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('accessToken');
+  }
 }
