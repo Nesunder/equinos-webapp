@@ -2,10 +2,10 @@ import { HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
 
 export interface Analysis {
   id: number;
-  user?: User;
-  horse?: Horse;
+  user: User;
+  horse: Horse;
   image: string;  // or ArrayBuffer, depending on how you handle binary data
-  predictionDetail?: PredictionDetail;
+  predictionDetail: PredictionDetail;
   observations: string;
 }
 
@@ -23,13 +23,13 @@ export interface Horse {
   estabulacion: boolean;
   salidaAPiquete: boolean;
   dolor: boolean;
-  compressedImage: Blob;  // or ArrayBuffer
+  compressedImage: string;  // or ArrayBuffer
   observations: string;
 }
 
 export enum Gender {
-  MALE = 'Masculino',
-  FEMALE = 'Femenino'
+  MASCULINO = 'Masculino',
+  FEMENINO = 'Femenino'
 }
 
 export interface PredictionDetail {
@@ -37,15 +37,12 @@ export interface PredictionDetail {
   sereno: number
   disgustado: number
   prediction: PredictionEnum
-
-
-  // Define the properties based on the structure of PredictionDetail in your Java class
 }
 
 export enum PredictionEnum {
-  INTERESADO = 'Interesado',
-  SERENO = 'Sereno',
-  DISGUTADO = 'Disgustado'
+  INTERESADO = 'INTERESADO',
+  SERENO = 'SERENO',
+  DISGUSTADO = 'DISGUSTADO'
 }
 
 export interface Options {

@@ -8,6 +8,8 @@
   --drawer-color: rgb(239, 244, 255);
   --toolbar-color: #e1eaff;
   --hover-button-color: #d7e3ff;
+  --button-color:#d7e3ff;
+  --card-text-color: #44474e;
   /* Otros estilos específicos para el tema claro */
 }
 
@@ -22,6 +24,8 @@
     --drawer-color: #313131;
     --toolbar-color: rgb(67, 80, 96);
     --hover-button-color: rgb(54, 65, 77);
+    --button-color: rgb(50, 60, 71);
+    --card-text-color: #ced3dd;
     /* Otros estilos específicos para el tema oscuro */
   }
 }

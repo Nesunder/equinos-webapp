@@ -1,34 +1,27 @@
 mat-nav-list {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .mat-icon {
-    font-size: 24px;
-    vertical-align: bottom;
-    color: var(--text-color);
+  font-size: 24px;
+  vertical-align: bottom;
+  color: var(--text-color);
 }
 
 span {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .logout-button {
-    margin-top: auto;
-    color: white;
-    background-color: var(--header-color);
+  margin-top: auto;
+  margin-right: 20px;
+  color: var(--text-color);
+  background-color: var(--button-color);
 }
 
 .logout-button:hover {
-    background-color: var(--hover-button-color);
-    color: white;
-}
-
-.logout-button mat-icon {
-    color: white;
-}
-
-.logout-button-text {
-    color: white;
+  background-color: var(--hover-button-color);
+  color: var(--text-color);
 }

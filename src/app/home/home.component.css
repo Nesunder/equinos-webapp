@@ -24,7 +24,7 @@
 }
 
 mat-sidenav {
-  width: 280px;
+  width: 260px;
   transition: width 0.2s ease-in-out;
 }
 
@@ -64,7 +64,7 @@ app-image-grid {
   background-color: var(--header-color);
   justify-content: center;
   min-height: fit-content;
-  height: 64px;
+  padding: 5px;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
 }
 

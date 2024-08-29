@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   isDarkMode = false;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {
     this.themeService.isDarkMode$.subscribe((isDark) => {

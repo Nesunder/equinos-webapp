@@ -1,21 +1,65 @@
-<div class="columns gap-1 wrapper p-2">
-  <h2 class="title">Caballo: {{ analysis.horse?.name }}</h2>
+<div class="columns gap-1 wrapper">
+  <mat-card class="p-2 mat-card-hover" (click)="openDialog()">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title class="title">
+          {{ analysis.horse.name }}
+        </mat-card-title>
+        <img mat-card-avatar [src]="horseImgUrl" />
+      </mat-card-title-group>
+    </mat-card-header>
 
-  <span>
-    Resultado predicción:
-    {{ analysis.predictionDetail?.prediction?.toLowerCase() }}
-  </span>
+    <mat-card-content>
+      <span>
+        Resultado predicción:
+        {{ analysis.predictionDetail.prediction.toLowerCase() }}
+      </span>
 
-  <p-image
-    class="img"
-    [src]="imageUrl"
-    alt="Image"
-    width="300px"
-    [preview]="true"
-  />
+      <div class="image-container">
+        <p-image
+          class="classified-img"
+          [src]="classifiedImgUrl"
+          alt="Image"
+          width="300px"
+          [preview]="true"
+          (onShow)="showCustomActions = true"
+          (onHide)="showCustomActions = false"
+          (click)="$event.stopPropagation()"
+        />
+      </div>
 
-  <div class="rows">
-    <span class="m-1 user"> Usuario: </span>
-    <span class="m-1 user-name"> {{analysis.user?.username}} </span>
-  </div>
+      <div class="rows">
+        <span class="m-1 user"> Usuario: </span>
+        <span class="m-1 user-name"> {{ analysis.user.username }} </span>
+      </div>
+
+      <hr />
+
+      <mat-card-actions class="gap-1 card-actions">
+        <button mat-button class="ac-button">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="$event.stopPropagation()" mat-button class="ac-button">
+          <mat-icon>note</mat-icon>
+        </button>
+        <button (click)="$event.stopPropagation()" (click)="downloadImage()" mat-button class="ac-button">
+          <mat-icon>download</mat-icon>
+        </button>
+        <button (click)="$event.stopPropagation()" mat-button class="ac-button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="showCustomActions" class="custom-image-actions">
+  <button
+    pButton
+    type="button"
+    icon="pi pi-download"
+    label="Download"
+    class="action-button"
+    (click)="downloadImage()"
+  ></button>
 </div>
