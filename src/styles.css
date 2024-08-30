@@ -7,19 +7,6 @@
     color-scheme: light dark;
 } */
 
-.image-container {
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  overflow: hidden;
-}
-
-p-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
 html,
 body,
 p,
@@ -43,6 +30,10 @@ app-root {
 app-root {
   display: flex;
   flex-direction: column;
+}
+
+.mat-mdc-dialog-surface {
+  background-color: var(--drawer-color) !important;
 }
 
 .rows {
@@ -107,4 +98,32 @@ app-root {
 .disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: var(--card-text-color);
+}
+
+.mat-mdc-text-field-wrapper {
+  background-color: var(--card-text-color);
+}
+
+.mat-mdc-form-field-label {
+  color: var(--card-text-color);
+}
+
+.mat-mdc-select-value {
+  color: var(--card-text-color);
+}
+
+.mat-mdc-select-arrow {
+  color: var(--card-text-color);
+}
+
+.mat-mdc-form-field-input-control {
+  color: var(--card-text-color);
+}
+
+.mat-mdc-icon-button {
+  --mdc-icon-button-icon-color: var(--card-text-color);
 }

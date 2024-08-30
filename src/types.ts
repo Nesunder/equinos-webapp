@@ -10,7 +10,7 @@ export interface Analysis {
 }
 
 export interface User {
-  id: number;
+  userId: number;
   username: string;
 }
 
@@ -23,13 +23,14 @@ export interface Horse {
   estabulacion: boolean;
   salidaAPiquete: boolean;
   dolor: boolean;
-  compressedImage: string;  // or ArrayBuffer
+  image?: string;
+  compressedImage?: string;  // or ArrayBuffer
   observations: string;
 }
 
 export enum Gender {
-  MASCULINO = 'Masculino',
-  FEMENINO = 'Femenino'
+  MALE = 'Masculino',
+  FEMALE = 'Femenino'
 }
 
 export interface PredictionDetail {
@@ -61,4 +62,28 @@ export interface Options {
     includeHeaders?: string[];
   } | boolean;
 
+}
+
+export interface HorseDto {
+  id: number;
+  name: string;
+  gender: string;
+  dateOfBirth: string;
+  entrenamiento: boolean;
+  estabulacion: boolean;
+  salidaAPiquete: boolean;
+  dolor: boolean;
+  image?: string;
+  observations: string;
+}
+
+export interface AnalysisDto {
+  userId: number;
+  horseId: number;
+  interesado: number;
+  sereno: number;
+  disgustado: number;
+  image?: string;
+  prediction: PredictionEnum;
+  observations: string;
 }
