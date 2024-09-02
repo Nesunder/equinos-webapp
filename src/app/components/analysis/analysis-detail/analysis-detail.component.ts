@@ -107,6 +107,8 @@ export class AnalysisDetailComponent implements OnInit {
         ...this.analysisData.horse,
         dateOfBirth: dateOfBirth
       });
+
+      this.observationsForm.patchValue({ observations: this.analysisData.observations })
     }
   }
 
@@ -175,13 +177,11 @@ export class AnalysisDetailComponent implements OnInit {
     });
   }
 
-
   handleDateChange(event: any): void {
     const selectedDate = moment(event.value);
     // Crear un objeto Moment con la fecha seleccionada
     this.formatedDate = selectedDate.format('DD-MM-YYYY');
   }
-
 
   toggleEditObservations(): void {
     if (this.isEditingObservations) {
@@ -189,14 +189,15 @@ export class AnalysisDetailComponent implements OnInit {
     }
     this.isEditingObservations = !this.isEditingObservations;
   }
+
   saveObservations() {
     if (this.observationsForm.valid && this.observationsForm.value.observations !== this.analysisData.observations) {
       this.analysisData.observations = this.observationsForm.value.observations;
       this.editAnalysis()
     }
   }
+
   editAnalysis() {
-    console.log(this.analysisData.observations);
     this.analysisService.editAnalysis(this.analysisData, this.analysisImgUrl).subscribe({
       next: response => {
         console.log('Respuesta del servidor:', response);
@@ -205,7 +206,7 @@ export class AnalysisDetailComponent implements OnInit {
       error: error => {
         console.error('Error al editar el análisis', error)
       }
-    })
+    });
   }
 
 }
