@@ -12,12 +12,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { AnalysisComponent } from "../components/analysis/analysis.component";
+import { HorseGridComponent } from "../components/horse-grid/horse-grid.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [MatSidenavModule, SidebarComponent, ImageUploadComponent,
-    ImageGridComponent, HeaderComponent, MatToolbar, MatIcon, FooterComponent, MatButtonModule, MatIconModule, MatDividerModule, AnalysisComponent],
+    ImageGridComponent, HeaderComponent, MatToolbar, MatIcon, FooterComponent,
+    MatButtonModule, MatIconModule, MatDividerModule, AnalysisComponent, HorseGridComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -27,6 +30,7 @@ export class HomeComponent {
 
   opened: boolean = true;
   mobileQuery: MediaQueryList;
+  navigationWindow: string = 'imageGrid';
 
   private _mobileQueryListener: () => void;
 
@@ -34,13 +38,13 @@ export class HomeComponent {
     const changeDetectorRef = inject(ChangeDetectorRef);
     const media = inject(MediaMatcher);
 
-    this.mobileQuery = media.matchMedia('(max-width: 850px)');
+    this.mobileQuery = media.matchMedia('(max-width: 933px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  toggleSidenav() {
-    this.sidenav.toggle();
+  ngOnInit() {
+    this.checkScreenSize();
   }
 
   ngOnDestroy(): void {
@@ -52,11 +56,17 @@ export class HomeComponent {
     this.checkScreenSize();
   }
 
-  ngOnInit() {
-    this.checkScreenSize();
+  toggleSidenav() {
+    this.sidenav.toggle();
   }
 
   checkScreenSize() {
-    this.opened = window.innerWidth < 850 ? false : true;
+    this.opened = window.innerWidth < 933 ? false : true;
+  }
+
+  setNavigationWindow(event: string) {
+    console.log(event);
+    
+    this.navigationWindow = event
   }
 }

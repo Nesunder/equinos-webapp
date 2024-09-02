@@ -34,8 +34,9 @@ mat-sidenav {
   }
 }
 
-app-image-grid {
+.grids {
   padding: 25px;
+  margin-bottom: 100px;
 }
 
 .mat-mdc-extended-fab {
