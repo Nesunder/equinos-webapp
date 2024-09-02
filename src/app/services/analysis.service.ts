@@ -25,6 +25,14 @@ export class AnalysisService {
     return this.apiService.get(this.url, { headers: this.headers, responseType: 'json' });
   }
 
+  getAnalysisImage(imageName: string): string{
+    return this.apiService.getImage("analysis", imageName, true);
+  }
+
+  getHorseImage(imageName: string): string{ // TODO, creo esto no deberia ir aqui, quizas debamos tener un imageService con estos dos metodos y los llamamos de donde necesitemos
+    return this.apiService.getImage("horses", imageName, true);
+  }
+
   // Código repetido, refactorizar luego
   editAnalysis(analysis: Analysis, imageBase64: string): Observable<any> {
     this.getAuthorizationData()

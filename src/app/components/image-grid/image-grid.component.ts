@@ -30,7 +30,17 @@ export class ImageGridComponent implements OnInit {
       .subscribe({
         next: response => {
           console.log('Respuesta del servidor:', response);
-          this.analyses = response
+          this.analyses = response.map(analysis => {
+            return {
+              ...analysis,
+              image: this.analysisService.getAnalysisImage(analysis.image),
+              horse: {
+                ...analysis.horse,
+                image: this.analysisService.getHorseImage(analysis.horse?.image || '')
+              }
+            };
+          });
+          console.log('Respuesta del servidor modificada:', this.analyses);
         },
         error: error => {
           console.error('Error al obtener los análisis', error);
