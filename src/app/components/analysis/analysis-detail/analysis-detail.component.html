@@ -9,7 +9,10 @@
         aria-label="Editar detalles del caballo"
         (click)="toggleEditHorse()"
       >
-        <mat-icon>edit</mat-icon>
+        <mat-icon *ngIf="!isEditingHorse; else checkHorse">edit</mat-icon>
+        <ng-template #checkHorse>
+          <mat-icon>check</mat-icon>
+        </ng-template>
       </button>
     </mat-card-header>
     <mat-card-content>
@@ -146,15 +149,22 @@
         aria-label="Editar detalles observaciones del análisis"
         (click)="toggleEditObservations()"
       >
-        <mat-icon>edit</mat-icon>
+        <mat-icon *ngIf="!isEditingObservations; else check">edit</mat-icon>
+        <ng-template #check>
+          <mat-icon>check</mat-icon>
+        </ng-template>
       </button>
     </mat-card-header>
     <mat-card-content>
-      <ng-container *ngIf="!isEditingHorse">
+      <ng-container *ngIf="!isEditingObservations">
         <p>{{ analysisData.observations }}</p>
       </ng-container>
       <form [formGroup]="observationsForm" *ngIf="isEditingObservations">
-        <mat-form-field appearance="fill" class="full-width" aria-label="Editar observaciones">
+        <mat-form-field
+          appearance="fill"
+          class="full-width"
+          aria-label="Editar observaciones"
+        >
           <textarea matInput formControlName="observations" rows="3"></textarea>
         </mat-form-field>
       </form>

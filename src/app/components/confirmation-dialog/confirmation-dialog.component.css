@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  background-color: var(--background-color);
+}
+
+.dialog-title {
+  color: var(--text-color);
+}
+.dialog-content {
+    color: var(--card-text-color);
+}

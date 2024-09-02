@@ -8,7 +8,9 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <app-sidebar></app-sidebar>
+      <app-sidebar
+        (navigationChange)="setNavigationWindow($event)"
+      ></app-sidebar>
     </mat-sidenav>
 
     <mat-sidenav-content>
@@ -21,7 +23,14 @@
           <span>Menu</span>
         </button>
       </mat-toolbar>
-      <app-image-grid style="margin-bottom: 100px"></app-image-grid>
+      <app-image-grid
+        *ngIf="navigationWindow === 'imageGrid'"
+        class="grids"
+      ></app-image-grid>
+      <app-horse-grid
+        *ngIf="navigationWindow === 'horseGrid'"
+        class="grids"
+      ></app-horse-grid>
     </mat-sidenav-content>
   </mat-sidenav-container>
   <app-footer></app-footer>
