@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,12 +10,17 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   private apiUrl: string = 'http://localhost:8080/api'
+  
   get<T>(url: string, options: any): Observable<T> {
     return this.httpClient.get<T>(`${this.apiUrl}${url}`, options) as Observable<T>
   }
 
   put<T>(url: string, id: number, body: FormData, options: any): Observable<T> {
     return this.httpClient.put<T>(`${this.apiUrl}${url}/${id}`, body, options) as Observable<T>;
+  }
+
+  delete<T>(url: string, id: number, options: any): Observable<T> {
+    return this.httpClient.delete<T>(`${this.apiUrl}${url}/${id}`, options) as Observable<T>;
   }
 }
 

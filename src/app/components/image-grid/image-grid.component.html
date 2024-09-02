@@ -3,6 +3,7 @@
     <app-analysis
       *ngFor="let analysis of analyses"
       [analysis]="analysis"
+      (notifyMustRefresh)="getAllAnalysis()"
     ></app-analysis>
   </div>
 </div>

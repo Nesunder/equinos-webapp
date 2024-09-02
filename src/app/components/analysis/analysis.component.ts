@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Analysis } from '../../../types';
 import { ImageModule } from 'primeng/image';
 import { MatCardModule } from '@angular/material/card';
@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { AnalysisDetailComponent } from './analysis-detail/analysis-detail.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AnalysisService } from '../../services/analysis.service';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 
 @Component({
@@ -19,12 +21,14 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AnalysisComponent implements OnInit {
   @Input() analysis!: Analysis;
+  @Output() notifyMustRefresh = new EventEmitter<boolean>();
+
   classifiedImgUrl: string = ''
   horseImgUrl: string = ''
   showCustomActions: boolean = false;
   horseCompressedImgUrl: string = ''
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private analysisService: AnalysisService) { }
 
   ngOnInit(): void {
     if (this.analysis.image) {
@@ -35,9 +39,9 @@ export class AnalysisComponent implements OnInit {
 
   }
 
-  openDialog(): void {
+  openAnalysisDialog(): void {
     this.dialog.open(AnalysisDetailComponent, {
-      width: '60%', // Ajusta el tamaño del diálogo si es necesario
+      width: '60%',
       data: {
         analysisData: this.analysis,
         horseImgUrl: this.horseImgUrl,
@@ -83,6 +87,29 @@ export class AnalysisComponent implements OnInit {
     const byteArray = new Uint8Array(byteNumbers);
 
     return new Blob([byteArray], { type: contentType });
+  }
+
+  deleteAnalysis() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Confirmar eliminación',
+        message: '¿Estás seguro de que quieres eliminar este análisis? Esta acción no se puede deshacer.'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.analysisService.deleteAnalysis(this.analysis.id).subscribe({
+          next: response => {
+            console.log('Se eliminó el análisis', response);
+            this.notifyMustRefresh.emit(true)
+          },
+          error: error => {
+            console.error('Error al editar el análisis', error)
+          }
+        });
+      }
+    });
+
   }
 
 }

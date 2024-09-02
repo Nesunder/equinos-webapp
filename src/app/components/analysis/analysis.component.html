@@ -1,5 +1,5 @@
 <div class="columns gap-1 wrapper">
-  <mat-card class="p-2 mat-card-hover" (click)="openDialog()">
+  <mat-card class="p-2 mat-card-hover" (click)="openAnalysisDialog()">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title class="title">
@@ -45,7 +45,7 @@
         <button (click)="$event.stopPropagation()" (click)="downloadImage()" mat-button class="ac-button">
           <mat-icon>download</mat-icon>
         </button>
-        <button (click)="$event.stopPropagation()" mat-button class="ac-button">
+        <button (click)="$event.stopPropagation()" (click)="deleteAnalysis()" mat-button class="ac-button">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
