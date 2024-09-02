@@ -22,17 +22,14 @@ export class AnalysisComponent implements OnInit {
   classifiedImgUrl: string = ''
   horseImgUrl: string = ''
   showCustomActions: boolean = false;
-  horseCompressedImgUrl: string = ''
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.analysis.image) {
-      this.classifiedImgUrl = `data:image/jpeg;base64,${this.analysis.image}`;
+      this.classifiedImgUrl = `${this.analysis.image}`;
     }
-    this.horseCompressedImgUrl = `data:image/jpeg;base64,${this.analysis.horse?.compressedImage}`;
-    this.horseImgUrl = `data:image/jpeg;base64,${this.analysis.horse?.image}`;
-
+    this.horseImgUrl = `${this.analysis.horse?.image}`;
   }
 
   openDialog(): void {

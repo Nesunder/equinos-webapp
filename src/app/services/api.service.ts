@@ -17,6 +17,11 @@ export class ApiService {
   put<T>(url: string, id: number, body: FormData, options: any): Observable<T> {
     return this.httpClient.put<T>(`${this.apiUrl}${url}/${id}`, body, options) as Observable<T>;
   }
+
+  getImage(path: string, imageName: string, compressed: boolean = false): string {
+    const fileName = compressed ? `compressed_${imageName}` : imageName;
+    return `${this.apiUrl}/images/${path}/${fileName}`;
+  }
 }
 
 
