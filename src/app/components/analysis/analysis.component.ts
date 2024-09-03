@@ -26,6 +26,7 @@ export class AnalysisComponent implements OnInit {
   classifiedImgUrl: string = ''
   horseImgUrl: string = ''
   showCustomActions: boolean = false;
+  updateGrid: boolean = false;
 
   constructor(public dialog: MatDialog, private analysisService: AnalysisService) { }
 
@@ -37,13 +38,25 @@ export class AnalysisComponent implements OnInit {
   }
 
   openAnalysisDialog(): void {
-    this.dialog.open(AnalysisDetailComponent, {
+    const dialogRef = this.dialog.open(AnalysisDetailComponent, {
       width: '60%',
       data: {
         analysisData: this.analysis,
         horseImgUrl: this.horseImgUrl,
         analysisImgUrl: this.classifiedImgUrl
       }
+    });
+
+    // Subscribe to the Subject to get updates without closing the dialog
+    dialogRef.componentInstance.dataSubject.subscribe(result => {
+      if (result.update) {
+        this.updateGrid = true;
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.updateGrid) this.notifyMustRefresh.emit(true)
+      this.updateGrid = false;
     });
   }
 
@@ -90,7 +103,7 @@ export class AnalysisComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: 'Confirmar eliminación',
-        message: '¿Estás seguro de que quieres eliminar este análisis? Esta acción no se puede deshacer.'
+        message: '¿Está seguro de que quiere eliminar este análisis? Esta acción no se puede deshacer.'
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -101,7 +114,7 @@ export class AnalysisComponent implements OnInit {
             this.notifyMustRefresh.emit(true)
           },
           error: error => {
-            console.error('Error al editar el análisis', error)
+            console.error('Error al eliminar el análisis', error)
           }
         });
       }

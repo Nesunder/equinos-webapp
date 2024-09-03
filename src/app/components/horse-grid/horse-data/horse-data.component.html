@@ -1,0 +1,105 @@
+<mat-card class="info-card">
+  <mat-card-header class="mb-2">
+    <mat-card-title>Detalles del caballo</mat-card-title>
+    <button
+      mat-icon-button
+      class="edit-button"
+      aria-label="Editar detalles del caballo"
+      (click)="toggleEditHorse()"
+    >
+      <mat-icon *ngIf="!isEditingHorse; else checkHorse">edit</mat-icon>
+      <ng-template #checkHorse>
+        <mat-icon>check</mat-icon>
+      </ng-template>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="!isEditingHorse">
+      <div class="info-grid">
+        <div class="info-item"><strong>Nombre:</strong> {{ horse.name }}</div>
+        <div class="info-item">
+          <strong>Fecha de Nacimiento:</strong>
+          {{ horse.dateOfBirth }}
+        </div>
+        <div class="info-item"><strong>Sexo:</strong> {{ horse.sexo }}</div>
+        <div class="info-item">
+          <strong>Entrenamiento:</strong>
+          {{ horse.entrenamiento ? "Sí" : "No" }}
+        </div>
+        <div class="info-item">
+          <strong>Estabulación:</strong>
+          {{ horse.estabulacion ? "Sí" : "No" }}
+        </div>
+        <div class="info-item">
+          <strong>Dolor:</strong> {{ horse.dolor ? "Sí" : "No" }}
+        </div>
+        <div class="info-item">
+          <strong>Salida a Piquete:</strong>
+          {{ horse.salidaAPiquete ? "Sí" : "No" }}
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <p class="observations">
+        <strong>Observaciones:</strong> {{ horse.observations }}
+      </p>
+    </ng-container>
+
+    <form [formGroup]="horseForm" *ngIf="isEditingHorse">
+      <div class="info-grid">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="dateOfBirth"
+            (dateChange)="handleDateChange($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo">
+            <mat-option value="MALE">Masculino</mat-option>
+            <mat-option value="FEMALE">Femenino</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="toggle-field">
+          <mat-slide-toggle class="toggle-text" formControlName="entrenamiento"
+            >Entrenamiento</mat-slide-toggle
+          >
+        </div>
+
+        <div class="toggle-field">
+          <mat-slide-toggle formControlName="estabulacion"
+            >Estabulación</mat-slide-toggle
+          >
+        </div>
+
+        <div class="toggle-field">
+          <mat-slide-toggle formControlName="dolor">Dolor</mat-slide-toggle>
+        </div>
+
+        <div class="toggle-field">
+          <mat-slide-toggle formControlName="salidaAPiquete"
+            >Salida a Piquete</mat-slide-toggle
+          >
+        </div>
+      </div>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Observaciones</mat-label>
+        <textarea matInput formControlName="observations" rows="3"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiService, base64ToFile } from './api.service';
+import { ApiService } from './api.service';
 import { Horse, HorseDto } from '../../types';
 import { Observable } from 'rxjs';
 
@@ -22,10 +22,9 @@ export class HorseService {
   getHorses(): Observable<HorseDto[]> {
     this.getAuthorizationData();
     return this.apiService.get(`${this.url}`, { headers: this.headers, responseType: 'json' });
-
   }
 
-  editHorse(horse: Horse, imageBase64: string): Observable<any> {
+  editHorse(horse: Horse): Observable<any> {
     this.getAuthorizationData();
 
     const horseDto: HorseDto = {
@@ -37,14 +36,17 @@ export class HorseService {
       estabulacion: horse.estabulacion,
       salidaAPiquete: horse.salidaAPiquete,
       dolor: horse.dolor,
-      image: horse.image,
       observations: horse.observations,
     }
 
     const formData: FormData = new FormData();
     formData.append('horse', new Blob([JSON.stringify(horseDto)], { type: 'application/json' }));
-    formData.append('image', base64ToFile(imageBase64, 'imagen.jpeg'));
 
     return this.apiService.put(this.url, horse.id, formData, { headers: this.headers, responseType: 'json' });
+  }
+
+  deleteHorse(horseId: number): Observable<any> {
+    this.getAuthorizationData()
+    return this.apiService.delete(this.url, horseId, { headers: this.headers, responseType: 'json' });
   }
 }

@@ -25,16 +25,8 @@ export class AnalysisService {
     return this.apiService.get(this.url, { headers: this.headers, responseType: 'json' });
   }
 
-  getAnalysisImage(imageName: string): string{
-    return this.apiService.getImage("analysis", imageName, true);
-  }
-
-  getHorseImage(imageName: string): string{ // TODO, creo esto no deberia ir aqui, quizas debamos tener un imageService con estos dos metodos y los llamamos de donde necesitemos
-    return this.apiService.getImage("horses", imageName, true);
-  }
-
   // Código repetido, refactorizar luego
-  editAnalysis(analysis: Analysis, imageBase64: string): Observable<any> {
+  editAnalysis(analysis: Analysis): Observable<any> {
     this.getAuthorizationData()
 
     const analysisDto: AnalysisDto = {
@@ -50,7 +42,6 @@ export class AnalysisService {
 
     const formData: FormData = new FormData();
     formData.append('analysis', new Blob([JSON.stringify(analysisDto)], { type: 'application/json' }));
-    formData.append('image', base64ToFile(imageBase64, 'imagen.jpeg'));
 
     return this.apiService.put(this.url, analysis.id, formData, { headers: this.headers, responseType: 'json' });
   }
@@ -58,6 +49,5 @@ export class AnalysisService {
   deleteAnalysis(analysisId: number): Observable<any> {
     this.getAuthorizationData()
     return this.apiService.delete(this.url, analysisId, { headers: this.headers, responseType: 'json' });
-
   }
 }

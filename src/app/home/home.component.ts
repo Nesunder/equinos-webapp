@@ -65,8 +65,6 @@ export class HomeComponent {
   }
 
   setNavigationWindow(event: string) {
-    console.log(event);
-    
     this.navigationWindow = event
   }
 }

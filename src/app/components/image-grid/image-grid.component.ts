@@ -6,6 +6,7 @@ import { ImageModule } from 'primeng/image';
 import { AnalysisComponent } from "../analysis/analysis.component";
 import { Analysis } from '../../../types';
 import { AnalysisService } from '../../services/analysis.service';
+import { ImageService } from '../../services/image.service';
 
 
 @Component({
@@ -19,24 +20,25 @@ export class ImageGridComponent implements OnInit {
 
   analyses: Analysis[] = []
 
-  constructor(private analysisService: AnalysisService) { }
+  constructor(private analysisService: AnalysisService,
+    private imageService: ImageService
+  ) { }
 
   ngOnInit(): void {
-     this.getAllAnalysis()
+    this.getAllAnalysis()
   }
 
   getAllAnalysis() {
     this.analysisService.getAllAnalysis()
       .subscribe({
         next: response => {
-          console.log('Respuesta del servidor:', response);
           this.analyses = response.map(analysis => {
             return {
               ...analysis,
-              image: this.analysisService.getAnalysisImage(analysis.image),
+              image: this.imageService.getCompressedAnalysisImage(analysis.image),
               horse: {
                 ...analysis.horse,
-                image: this.analysisService.getHorseImage(analysis.horse?.image || '')
+                image: this.imageService.getCompressedHorseImage(analysis.horse?.image || '')
               }
             };
           });

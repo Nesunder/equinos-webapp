@@ -1,0 +1,7 @@
+<h1 mat-dialog-title class="dialog-title">Detalles del Caballo</h1>
+<div mat-dialog-content class="dialog-content">
+  <app-horse-data [horse]="horse" (notifyMustRefresh)="notifyRefresh()"></app-horse-data>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</div>

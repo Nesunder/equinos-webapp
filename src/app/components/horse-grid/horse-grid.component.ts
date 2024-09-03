@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Horse, HorseDto } from '../../../types';
+import { HorseDto } from '../../../types';
 import { HorseComponent } from "./horse/horse.component";
 import { CommonModule } from '@angular/common';
 import { HorseService } from '../../services/horse.service';
+import { ImageService } from '../../services/image.service';
 
 @Component({
   selector: 'app-horse-grid',
@@ -15,7 +16,9 @@ export class HorseGridComponent implements OnInit {
 
   horses: HorseDto[] = []
 
-  constructor(private horseService: HorseService) { }
+  constructor(private horseService: HorseService,
+    private imageService: ImageService
+  ) { }
 
   ngOnInit(): void {
     this.getHorses()
@@ -25,8 +28,12 @@ export class HorseGridComponent implements OnInit {
     this.horseService.getHorses()
       .subscribe({
         next: response => {
-          console.log('Respuesta del servidor:', response);
-          this.horses = response
+          this.horses = response.map(horse => {
+            return {
+              ...horse,
+              image: this.imageService.getCompressedHorseImage(horse.image!)
+            }
+          })
         },
         error: error => {
           console.error('Error al obtener los caballos', error);

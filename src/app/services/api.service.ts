@@ -23,7 +23,7 @@ export class ApiService {
     return this.httpClient.delete<T>(`${this.apiUrl}${url}/${id}`, options) as Observable<T>;
   }
 
-  getImage(path: string, imageName: string, compressed: boolean = false): string {
+  getImage(path: string, imageName: string, compressed: boolean = false): string {    
     const fileName = compressed ? `compressed_${imageName}` : imageName;
     return `${this.apiUrl}/images/${path}/${fileName}`;
   }

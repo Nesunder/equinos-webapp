@@ -1,0 +1,105 @@
+.dialog-title {
+    color: var(--card-text-color);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  mat-card {
+    background-color: var(--background-color);
+  }
+  
+  mat-card-header {
+    color: var(--card-text-color);
+  }
+  
+  p {
+    color: var(--card-text-color);
+  }
+  
+  .dialog-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 800px;
+  }
+  
+  .info-card {
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .edit-button {
+    color: var(--card-text-color);
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  
+  .observations {
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .prediction-result {
+    color: var(--card-text-color);
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .prediction-result mat-icon {
+    margin-right: 10px;
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .prediction-details {
+    color: var(--card-text-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .prediction-item {
+    font-size: 0.9rem;
+  }
+  
+  .observations-card {
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Other styles remain unchanged */
+  
+  @media (max-width: 600px) {
+    .dialog-content {
+      grid-template-columns: 1fr;
+    }
+  
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  mat-form-field.mat-mdc-form-field {
+    --mdc-filled-text-field-container-color: var(--background-color);
+    --mdc-filled-text-field-label-text-color: var(--card-text-color);
+    --mdc-filled-text-field-input-text-color: var(--card-text-color);
+    --mdc-filled-text-field-focus-label-text-color: var(--card-text-color);
+    --mdc-filled-text-field-focus-active-indicator-color: var(--card-text-color);
+    --mdc-filled-text-field-active-indicator-color: var(--card-text-color);
+    --mdc-filled-text-field-hover-label-text-color: var(--text-color);
+    --mdc-filled-text-field-hover-input-text-color: var(--text-color);
+    --mdc-filled-text-field-hover-active-indicator-color: var(--text-color);
+    --mdc-filled-text-field-hover-container-color: var(--drawer-color);
+    --mdc-filled-text-field-error-hover-active-indicator-color: #8c0005;
+    --mdc-filled-text-field-error-hover-label-text-color: #8c0005;
+  }
