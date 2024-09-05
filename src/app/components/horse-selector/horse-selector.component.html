@@ -1,0 +1,14 @@
+<div class="horse-selector-container">
+  <div class="horse-preview" (click)="openDialog()">
+    <img
+      *ngIf="selectedHorse"
+      [src]="selectedHorse.image"
+      alt="Selected horse"
+      class="preview-image"
+    />
+    <div *ngIf="!selectedHorse" class="horse-placeholder">
+      <mat-icon class="upload-icon">bedroom_baby</mat-icon>
+      <span class="upload-text">Seleccionar un caballo</span>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Analysis, AnalysisDto } from '../../types';
 import { ApiService } from './api.service';
-import { base64ToFile } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -50,4 +49,18 @@ export class AnalysisService {
     this.getAuthorizationData()
     return this.apiService.delete(this.url, analysisId, { headers: this.headers, responseType: 'json' });
   }
+  createAnalysis(analysisDto: AnalysisDto, imageFile: File): Observable<any> {
+    this.getAuthorizationData();
+
+    const formData: FormData = new FormData();
+    formData.append('analysis', new Blob([JSON.stringify(analysisDto)], { type: 'application/json' }));
+    formData.append('image', imageFile, imageFile.name);
+
+    return this.apiService.post(this.url, formData, {
+      headers: new HttpHeaders({ 'Authorization': this.headers.get('Authorization') || '' }),
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
 }

@@ -13,7 +13,6 @@
 }
 
 .mat-drawer-content {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   z-index: 2;
@@ -35,8 +34,8 @@ mat-sidenav {
 }
 
 .grids {
-  padding: 25px;
-  margin-bottom: 100px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .mat-mdc-extended-fab {
@@ -77,13 +76,39 @@ mat-sidenav {
 }
 
 .home-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-is-mobile .home-sidenav-container {
   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
        `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.content-container {
+  flex: 1 0 auto;
+  overflow-y: auto;
+  padding-top: 25px;
+  padding-bottom: 50px; /* Height of the footer */
+}
+
+.content-footer {
+  flex-shrink: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.grids {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  min-height: calc(100vh - 106px); /* 100vh - (header height + footer height) */
 }

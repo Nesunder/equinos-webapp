@@ -5,19 +5,16 @@
         <mat-card-title class="title">
           {{ horse.name }}
         </mat-card-title>
-        <img mat-card-avatar [src]="horseImgUrl" />
       </mat-card-title-group>
     </mat-card-header>
 
     <mat-card-content>
       <div class="image-container">
-        <p-image
+        <img
           class="horse-img"
           [src]="horseImgUrl"
           alt="Foto del caballo"
-          width="300px"
-          [preview]="true"
-          (click)="$event.stopPropagation()"
+          width="450px"
         />
       </div>
 

@@ -1,0 +1,43 @@
+.selector-title {
+  color: var(--text-color);
+}
+
+.horse-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.horse-item {
+  cursor: pointer;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.horse-item:hover {
+  transform: scale(1.05);
+}
+
+.horse-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.horse-info {
+  padding: 8px;
+}
+
+.horse-info h3 {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 16px;
+}
+
+.horse-info p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--card-text-color, #ccc);
+}

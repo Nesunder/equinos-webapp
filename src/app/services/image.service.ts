@@ -24,3 +24,22 @@ export class ImageService {
     return this.apiService.getImage("horses", imageName, true);
   }
 }
+
+/**
+ * Convierte un string base64 en un objeto File.
+ * @param base64String - La imagen en formato base64.
+ * @param fileName - El nombre del archivo que deseas crear.
+ * @returns Un objeto File.
+ */
+export function base64ToFile(base64String: string, fileName: string): File {
+  const byteString = atob(base64String.split(',')[1]);
+  const mimeString = base64String.split(',')[0].split(':')[1].split(';')[0];
+
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new File([ab], fileName, { type: mimeString });
+}

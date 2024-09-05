@@ -14,13 +14,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AnalysisComponent } from "../components/analysis/analysis.component";
 import { HorseGridComponent } from "../components/horse-grid/horse-grid.component";
 import { CommonModule } from '@angular/common';
+import { AnalysisBuilderComponent } from "../components/analysis/analysis-builder/analysis-builder.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [MatSidenavModule, SidebarComponent, ImageUploadComponent,
     ImageGridComponent, HeaderComponent, MatToolbar, MatIcon, FooterComponent,
-    MatButtonModule, MatIconModule, MatDividerModule, AnalysisComponent, HorseGridComponent, CommonModule],
+    MatButtonModule, MatIconModule, MatDividerModule, AnalysisComponent, HorseGridComponent, CommonModule, AnalysisBuilderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

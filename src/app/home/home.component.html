@@ -13,7 +13,7 @@
       ></app-sidebar>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="content-wrapper">
       <mat-toolbar
         class="home-toolbar"
         [hidden]="mobileQuery.matches ? false : true"
@@ -23,15 +23,19 @@
           <span>Menu</span>
         </button>
       </mat-toolbar>
-      <app-image-grid
-        *ngIf="navigationWindow === 'imageGrid'"
-        class="grids"
-      ></app-image-grid>
-      <app-horse-grid
-        *ngIf="navigationWindow === 'horseGrid'"
-        class="grids"
-      ></app-horse-grid>
+      <app-analysis-builder *ngIf="navigationWindow === 'newAnalysis'">
+      </app-analysis-builder>
+      <div class="content-container" *ngIf="navigationWindow !== 'newAnalysis'">
+        <app-image-grid
+          *ngIf="navigationWindow === 'imageGrid'"
+          class="grids"
+        ></app-image-grid>
+        <app-horse-grid
+          *ngIf="navigationWindow === 'horseGrid'"
+          class="grids"
+        ></app-horse-grid>
+      </div>
+      <app-footer *ngIf="navigationWindow !== 'newAnalysis'" class="content-footer"></app-footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <app-footer></app-footer>
 </div>

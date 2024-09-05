@@ -1,0 +1,19 @@
+<h2 mat-dialog-title class="selector-title">Seleccione un caballo</h2>
+<mat-dialog-content class="pt-2 pb-2">
+  <div class="horse-list">
+    <div
+      *ngFor="let horse of data.horses"
+      class="horse-item"
+      (click)="selectHorse(horse)"
+    >
+      <img [src]="horse.image" alt="Horse" class="horse-image" />
+      <div class="horse-info">
+        <h3>{{ horse.name }}</h3>
+        <p>{{ horse.gender }} | {{ horse.dateOfBirth }}</p>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

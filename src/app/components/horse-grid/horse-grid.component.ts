@@ -34,6 +34,7 @@ export class HorseGridComponent implements OnInit {
               image: this.imageService.getCompressedHorseImage(horse.image!)
             }
           })
+          localStorage.setItem('horses', JSON.stringify(this.horses));
         },
         error: error => {
           console.error('Error al obtener los caballos', error);

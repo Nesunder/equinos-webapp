@@ -19,14 +19,12 @@ export class AuthService {
     if (advancedUser) {
       url += 'Advanced'
     }
-    console.log(username, email, password);
-    
     return this.http.post<any>(url, { username, email, password });
   }
 
   storeUserData(data: any) {
     localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('idUsuario', data.idUsuario);
+    localStorage.setItem('userId', data.userId);
     localStorage.setItem('role', data.role);
     localStorage.setItem('email', data.email);
     localStorage.setItem('username', data.username);
