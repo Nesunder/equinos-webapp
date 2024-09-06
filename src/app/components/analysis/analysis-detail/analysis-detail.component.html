@@ -1,6 +1,9 @@
 <h1 mat-dialog-title class="dialog-title">Detalles del Análisis</h1>
 <div mat-dialog-content class="dialog-content">
-  <app-horse-data [horse]="analysisData.horse" (notifyMustRefresh)="notifyRefresh()"></app-horse-data>
+  <app-horse-data
+    [horse]="analysisData.horse"
+    (notifyMustRefresh)="notifyRefresh()"
+  ></app-horse-data>
   <mat-card class="info-card">
     <mat-card-header>
       <mat-card-title>Detalles de la predicción</mat-card-title>
@@ -12,6 +15,9 @@
         }}</mat-icon>
         <span>{{ analysisData.predictionDetail.prediction }}</span>
       </div>
+        <div class="prediction-tag">
+          <strong>Etiqueta más frecuente:</strong> {{ largestList }}
+        </div>
       <div class="prediction-details">
         <div class="prediction-item">
           <strong>Sereno:</strong>

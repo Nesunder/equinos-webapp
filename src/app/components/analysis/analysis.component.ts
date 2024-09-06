@@ -10,6 +10,7 @@ import { AnalysisDetailComponent } from './analysis-detail/analysis-detail.compo
 import { MatDialog } from '@angular/material/dialog';
 import { AnalysisService } from '../../services/analysis.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { TaggerComponent } from './tagger/tagger.component';
 
 
 @Component({
@@ -120,6 +121,22 @@ export class AnalysisComponent implements OnInit {
       }
     });
 
+  }
+
+  tagAnalysis() {
+    const dialogRef = this.dialog.open(TaggerComponent, {
+      width: '60%',
+      maxWidth: '400px',
+      data: {
+        analysisId: this.analysis.id,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.refresh) {
+        this.notifyMustRefresh.emit(true);
+      }
+    });
   }
 
 }

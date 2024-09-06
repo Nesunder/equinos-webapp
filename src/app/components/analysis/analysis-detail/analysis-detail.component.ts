@@ -37,6 +37,7 @@ export class AnalysisDetailComponent implements OnInit {
   originalHorseData: Horse | null = null;
   analysisImgUrl: string = '';
   dataSubject = new Subject<any>();
+  largestList: string = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
     private analysisService: AnalysisService
@@ -49,10 +50,27 @@ export class AnalysisDetailComponent implements OnInit {
     this.analysisData = this.data.analysisData;
     this.horseImgUrl = this.data.horseImgUrl;
     this.analysisImgUrl = this.data.analysisImgUrl;
+    this.getMostRepeatedTag();
     this.observationsForm.patchValue({ observations: this.analysisData.observations });
 
     if (this.analysisData.horse) {
       this.originalHorseData = { ...this.analysisData.horse };
+    }
+  }
+
+  getMostRepeatedTag() {
+    const serenoList = this.analysisData.SERENO.length;
+    const interesadoList = this.analysisData.INTERESADO.length;
+    const disgustadoList = this.analysisData.DISGUSTADO.length;
+
+    // Find the largest size
+    const largestSize = Math.max(serenoList, interesadoList, disgustadoList);
+    if (largestSize === serenoList) {
+      this.largestList = 'Sereno';
+    } else if (largestSize === interesadoList) {
+      this.largestList = 'Interesado';
+    } else {
+      this.largestList = 'Disgustado';
     }
   }
 

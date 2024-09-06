@@ -39,7 +39,7 @@
         <button mat-button class="ac-button">
           <mat-icon>edit</mat-icon>
         </button>
-        <button (click)="$event.stopPropagation()" mat-button class="ac-button">
+        <button (click)="$event.stopPropagation()" (click)="tagAnalysis()" mat-button class="ac-button">
           <mat-icon>note</mat-icon>
         </button>
         <button (click)="$event.stopPropagation()" (click)="downloadImage()" mat-button class="ac-button">

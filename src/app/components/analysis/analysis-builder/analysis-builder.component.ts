@@ -12,8 +12,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HorseSelectorComponent } from "../../horse-selector/horse-selector.component";
 import { AnalysisService } from '../../../services/analysis.service';
-import { ApiService } from '../../../services/api.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { NotificationService } from '../../../services/notification.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-analysis-builder',
@@ -29,7 +30,8 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
     MatIconModule,
     MatDividerModule,
     ScrollingModule,
-    HorseSelectorComponent
+    HorseSelectorComponent,
+    MatSnackBarModule
   ],
   templateUrl: './analysis-builder.component.html',
   styleUrl: './analysis-builder.component.css'
@@ -41,7 +43,8 @@ export class AnalysisBuilderComponent implements OnInit {
   imageFile: File | undefined;
 
 
-  constructor(private fb: FormBuilder, private analysisService: AnalysisService, private apiService: ApiService) {
+  constructor(private fb: FormBuilder, private analysisService: AnalysisService,
+    private notificationService: NotificationService) {
     this.analysisForm = this.fb.group({
       horseId: [null, Validators.required],
       image: ['', Validators.required],
@@ -55,7 +58,24 @@ export class AnalysisBuilderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.notificationService.showSuccess('Se creó el análisis!');
+
+  }
+
+  resetForm() {
+    this.analysisForm = this.fb.group({
+      horseId: [null, Validators.required],
+      image: ['', Validators.required],
+      observations: [''],
+      predictionDetail: this.fb.group({
+        interesado: [0, [Validators.required, Validators.min(0), Validators.max(1)]],
+        sereno: [0, [Validators.required, Validators.min(0), Validators.max(1)]],
+        disgustado: [0, [Validators.required, Validators.min(0), Validators.max(1)]],
+        prediction: ['', Validators.required]
+      })
+    });
+  }
 
   onFileSelected(event: Event): void {
     this.imageFile = (event.target as HTMLInputElement).files?.[0];
@@ -75,8 +95,6 @@ export class AnalysisBuilderComponent implements OnInit {
 
   onSubmit(): void {
     const userIdString = localStorage.getItem('userId');
-    console.log(userIdString);
-
     var userId = userIdString ? parseInt(userIdString) : -1
 
     if (this.analysisForm.valid) {
@@ -102,11 +120,15 @@ export class AnalysisBuilderComponent implements OnInit {
           const percentDone = Math.round(100 * response.loaded / response.total);
           console.log(`File is ${percentDone}% uploaded.`);
         } else if (response instanceof HttpResponse) {
+          this.notificationService.showSuccess('Se creó el análisis!');
           console.log('Se creó el análsis', response);
+          this.imagePreview = null
+          this.resetForm();
         }
       },
       error: error => {
-        console.error('Error al crear el análisis', error)
+        console.error('Error al crear el análisis', error);
+        this.notificationService.showError('Error en la creación del análisis');
       }
     });
   }

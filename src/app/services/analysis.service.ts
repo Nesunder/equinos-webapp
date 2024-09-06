@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Analysis, AnalysisDto } from '../../types';
+import { Analysis, AnalysisDto, ObservationDto } from '../../types';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -49,6 +49,7 @@ export class AnalysisService {
     this.getAuthorizationData()
     return this.apiService.delete(this.url, analysisId, { headers: this.headers, responseType: 'json' });
   }
+
   createAnalysis(analysisDto: AnalysisDto, imageFile: File): Observable<any> {
     this.getAuthorizationData();
 
@@ -60,6 +61,15 @@ export class AnalysisService {
       headers: new HttpHeaders({ 'Authorization': this.headers.get('Authorization') || '' }),
       reportProgress: true,
       observe: 'events'
+    });
+  }
+
+  tagAnalysis(observationDto: ObservationDto): Observable<any> {
+    this.getAuthorizationData();
+
+    return this.apiService.post(this.url + '/observation', observationDto, {
+      headers: this.headers,
+      responseType: 'json'
     });
   }
 

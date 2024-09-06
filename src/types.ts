@@ -7,6 +7,9 @@ export interface Analysis {
   image: string;  // or ArrayBuffer, depending on how you handle binary data
   predictionDetail: PredictionDetail;
   observations: string;
+  DISGUSTADO: [],
+  INTERESADO: [],
+  SERENO: []
 }
 
 export interface User {
@@ -86,4 +89,10 @@ export interface AnalysisDto {
   image?: string;
   prediction: PredictionEnum;
   observations: string;
+}
+
+export interface ObservationDto {
+  analysisId: number;
+  observation: string
+  predictionEnum: PredictionEnum
 }

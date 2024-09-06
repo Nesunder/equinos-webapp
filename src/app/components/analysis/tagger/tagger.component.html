@@ -1,0 +1,26 @@
+<h1 mat-dialog-title class="dialog-title">Etiquetar análisis</h1>
+<div mat-dialog-content class="dialog-content">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="tagForm">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Etiqueta</mat-label>
+          <mat-select formControlName="prediction">
+            <mat-option value="INTERESADO">Interesado</mat-option>
+            <mat-option value="SERENO">Sereno</mat-option>
+            <mat-option value="DISGUSTADO">Disgustado</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Observaciones</mat-label>
+          <textarea matInput formControlName="observations" rows="3"></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button color="warn" mat-dialog-close>Cerrar</button>
+  <button mat-button (click)="tagAnalysis()">Confirmar</button>
+</div>

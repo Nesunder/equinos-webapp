@@ -92,7 +92,7 @@ mat-card {
 }
 
 mat-card-header {
-  color: var(--card-text-color);
+  color: var(--text-color);
 }
 
 p {

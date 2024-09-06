@@ -127,3 +127,18 @@ app-root {
 .mat-mdc-icon-button {
   --mdc-icon-button-icon-color: var(--card-text-color);
 }
+
+.success-snackbar {
+  background: #43a047;
+  color: #fff;
+}
+
+.error-snackbar {
+  background: #d32f2f;
+  color: #fff;
+}
+
+.success-snackbar .mat-simple-snackbar-action,
+.error-snackbar .mat-simple-snackbar-action {
+  color: #fff;
+}
