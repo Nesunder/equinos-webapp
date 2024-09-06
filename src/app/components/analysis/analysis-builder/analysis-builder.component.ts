@@ -58,10 +58,7 @@ export class AnalysisBuilderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.notificationService.showSuccess('Se creó el análisis!');
-
-  }
+  ngOnInit(): void { }
 
   resetForm() {
     this.analysisForm = this.fb.group({
