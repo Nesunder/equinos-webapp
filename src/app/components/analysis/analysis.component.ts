@@ -66,39 +66,19 @@ export class AnalysisComponent implements OnInit {
   }
 
   downloadImage() {
-    // Call the method to download the image
-    this.downloadBase64File(this.classifiedImgUrl, 'downloaded_image.jpeg');
+    fetch(this.classifiedImgUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'analysis.jpg';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(error => console.error('Error al descargar la imagen:', error));
   }
 
-  downloadBase64File(base64Data: string, fileName: string) {
-    // Convert the Base64 string to a Blob
-    const blob = this.base64ToBlob(base64Data);
-
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = fileName;
-
-    // Append the link to the body (required for Firefox)
-    document.body.appendChild(link);
-
-    // Programmatically click the link to trigger the download
-    link.click();
-
-    // Remove the link from the document
-    document.body.removeChild(link);
-  }
-
-  base64ToBlob(base64Data: string, contentType: string = ''): Blob {
-    const byteCharacters = atob(base64Data.split(',')[1]);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-
-    return new Blob([byteArray], { type: contentType });
-  }
 
   deleteAnalysis() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
