@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Horse, HorseDto } from '../../types';
+import { Gender, Horse, HorseDto } from '../../types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -48,5 +48,20 @@ export class HorseService {
   deleteHorse(horseId: number): Observable<any> {
     this.getAuthorizationData()
     return this.apiService.delete(this.url, horseId, { headers: this.headers, responseType: 'json' });
+  }
+
+  mapGenderToSexo(gender: string): Gender {
+    switch (gender.toLowerCase()) {
+      case 'male':
+        return Gender.MALE;
+      case 'female':
+        return Gender.FEMALE;
+      case 'masculino':
+        return Gender.MALE;
+      case 'femenino':
+        return Gender.FEMALE;
+      default:
+        throw new Error(`Género desconocido: ${gender}`);
+    }
   }
 }

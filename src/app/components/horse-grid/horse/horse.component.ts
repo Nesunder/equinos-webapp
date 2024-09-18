@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Gender, Horse, HorseDto } from '../../../../types';
+import { Horse, HorseDto } from '../../../../types';
 import { ImageModule } from 'primeng/image';
 import { MatCardModule } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
@@ -61,7 +61,7 @@ export class HorseComponent implements OnInit {
     return {
       id: horseDto.id,
       name: horseDto.name,
-      sexo: this.mapGenderToSexo(horseDto.gender),  // Aquí mapeamos gender a sexo
+      sexo: this.horseService.mapGenderToSexo(horseDto.gender),  // Aquí mapeamos gender a sexo
       dateOfBirth: horseDto.dateOfBirth,  // Ajustar formato si es necesario
       entrenamiento: horseDto.entrenamiento,
       estabulacion: horseDto.estabulacion,
@@ -70,17 +70,6 @@ export class HorseComponent implements OnInit {
       image: horseDto.image,
       observations: horseDto.observations,
     };
-  }
-
-  mapGenderToSexo(gender: string): Gender {
-    switch (gender.toLowerCase()) {
-      case 'male':
-        return Gender.MALE;
-      case 'female':
-        return Gender.FEMALE;
-      default:
-        throw new Error(`Género desconocido: ${gender}`);
-    }
   }
 
   deleteHorse() {

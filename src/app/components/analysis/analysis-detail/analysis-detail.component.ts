@@ -11,6 +11,7 @@ import { AnalysisService } from '../../../services/analysis.service';
 import { HorseDataComponent } from "../../horse-grid/horse-data/horse-data.component";
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2'
+import { HorseService } from '../../../services/horse.service';
 
 @Component({
   selector: 'app-analysis-detail',
@@ -39,9 +40,10 @@ export class AnalysisDetailComponent implements OnInit {
   analysisImgUrl: string = '';
   dataSubject = new Subject<any>();
   largestList: string = '';
+  horseData: Horse | null = null;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
-    private analysisService: AnalysisService
+    private analysisService: AnalysisService, private horseService: HorseService
   ) {
     this.observationsForm = this.fb.group({
       observations: ['']
@@ -53,6 +55,8 @@ export class AnalysisDetailComponent implements OnInit {
     this.analysisImgUrl = this.data.analysisImgUrl;
     this.getMostRepeatedTag();
     this.observationsForm.patchValue({ observations: this.analysisData.observations });
+    this.horseData = this.analysisData.horse
+    this.horseData.sexo = this.horseService.mapGenderToSexo(this.horseData.sexo)
 
     if (this.analysisData.horse) {
       this.originalHorseData = { ...this.analysisData.horse };

@@ -120,6 +120,7 @@ export class AnalysisBuilderComponent implements OnInit {
           this.notificationService.showSuccess('Se creó el análisis!');
           console.log('Se creó el análsis', response);
           this.imagePreview = null
+          this.analysisForm.patchValue({ horseId: null });
           this.resetForm();
         }
       },

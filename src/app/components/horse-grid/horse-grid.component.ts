@@ -31,6 +31,7 @@ export class HorseGridComponent implements OnInit {
           this.horses = response.map(horse => {
             return {
               ...horse,
+              gender: this.horseService.mapGenderToSexo(horse.gender),
               image: this.imageService.getCompressedHorseImage(horse.image!)
             }
           })

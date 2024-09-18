@@ -31,6 +31,7 @@ export class HorseSelectorComponent implements OnInit {
       this.getHorses();
     }
   }
+  
   getHorses() {
     this.horseService.getHorses()
       .subscribe({
@@ -38,6 +39,7 @@ export class HorseSelectorComponent implements OnInit {
           this.horses = response.map(horse => {
             return {
               ...horse,
+              gender: this.horseService.mapGenderToSexo(horse.gender),
               image: this.imageService.getCompressedHorseImage(horse.image!)
             }
           })
