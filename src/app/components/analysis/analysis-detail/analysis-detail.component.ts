@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AnalysisService } from '../../../services/analysis.service';
 import { HorseDataComponent } from "../../horse-grid/horse-data/horse-data.component";
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-analysis-detail',
@@ -107,10 +108,22 @@ export class AnalysisDetailComponent implements OnInit {
       next: response => {
         console.log('Se editó el análsis', response);
         this.originalHorseData = this.analysisData.horse
-        this.notifyRefresh();
+        this.notifyRefresh();   
+        Swal.fire({
+          icon: "success",
+          title: "Se editó el análsis",
+          showConfirmButton: false,
+          timer: 5000
+        });
       },
       error: error => {
         console.error('Error al editar el análisis', error)
+        Swal.fire({
+          title: 'Error!',
+          text: 'Error al editar el análisis, debe tener permisos de usuario avanzado',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       }
     });
   }

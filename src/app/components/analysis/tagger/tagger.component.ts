@@ -10,6 +10,7 @@ import { ObservationDto } from '../../../../types';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tagger',
@@ -61,9 +62,21 @@ export class TaggerComponent implements OnInit {
         next: response => {
           console.log('Se agregó el tag al análisis', response);
           this.dialogRef.close({ refresh: true });
+          Swal.fire({
+            icon: "success",
+            title: "Se agregó el tag al análisis",
+            showConfirmButton: false,
+            timer: 5000
+          });
         },
         error: error => {
           console.error('Error al etiquetar el análisis', error)
+          Swal.fire({
+            title: 'Error!',
+            text: 'Error al etiquetar el análisis, debe tener permisos de usuario avanzado',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
         }
       });
     }
