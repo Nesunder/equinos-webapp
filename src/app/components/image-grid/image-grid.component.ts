@@ -39,7 +39,8 @@ export class ImageGridComponent implements OnInit {
               horse: {
                 ...analysis.horse,
                 image: this.imageService.getCompressedHorseImage(analysis.horse?.image || '')
-              }
+              },
+              fullImage: this.imageService.getAnalysisImage(analysis.image),
             };
           });
           console.log('Respuesta del servidor modificada:', this.analyses);

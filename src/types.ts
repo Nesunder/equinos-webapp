@@ -9,7 +9,9 @@ export interface Analysis {
   observations: string;
   DISGUSTADO: [],
   INTERESADO: [],
-  SERENO: []
+  SERENO: [],
+  fullImage?: string
+  userImage?: string
 }
 
 export interface User {

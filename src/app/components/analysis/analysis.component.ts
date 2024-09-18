@@ -28,13 +28,16 @@ export class AnalysisComponent implements OnInit {
   horseImgUrl: string = ''
   showCustomActions: boolean = false;
   updateGrid: boolean = false;
+  classifiedFullImageUrl: string = '';
 
-  constructor(public dialog: MatDialog, private analysisService: AnalysisService) { }
+  constructor(public dialog: MatDialog, private analysisService: AnalysisService,
+  ) { }
 
   ngOnInit(): void {
     if (this.analysis.image) {
       this.classifiedImgUrl = `${this.analysis.image}`;
     }
+    if (this.analysis.fullImage) this.classifiedFullImageUrl = this.analysis.fullImage
     this.horseImgUrl = `${this.analysis.horse?.image}`;
   }
 
@@ -66,7 +69,7 @@ export class AnalysisComponent implements OnInit {
   }
 
   downloadImage() {
-    fetch(this.classifiedImgUrl)
+    fetch(this.classifiedFullImageUrl)
       .then(response => response.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
