@@ -13,8 +13,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HorseSelectorComponent } from "../../horse-selector/horse-selector.component";
 import { AnalysisService } from '../../../services/analysis.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { NotificationService } from '../../../services/notification.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-analysis-builder',
@@ -44,7 +44,7 @@ export class AnalysisBuilderComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private analysisService: AnalysisService,
-    private notificationService: NotificationService) {
+    private themeService: ThemeService) {
     this.analysisForm = this.fb.group({
       horseId: [null, Validators.required],
       image: ['', Validators.required],
@@ -105,7 +105,6 @@ export class AnalysisBuilderComponent implements OnInit {
         prediction: formValue.predictionDetail.prediction,
         observations: formValue.observations
       };
-      console.log('Analysis to submit:', analysis);
       this.createAnalysis(analysis)
     }
   }
@@ -117,7 +116,7 @@ export class AnalysisBuilderComponent implements OnInit {
           const percentDone = Math.round(100 * response.loaded / response.total);
           console.log(`File is ${percentDone}% uploaded.`);
         } else if (response instanceof HttpResponse) {
-          this.notificationService.showSuccess('Se creó el análisis!');
+          this.themeService.showSuccessAlert('Se creó el análisis!');
           console.log('Se creó el análsis', response);
           this.imagePreview = null
           this.analysisForm.patchValue({ horseId: null });
@@ -126,7 +125,7 @@ export class AnalysisBuilderComponent implements OnInit {
       },
       error: error => {
         console.error('Error al crear el análisis', error);
-        this.notificationService.showError('Error en la creación del análisis');
+        this.themeService.showErrorAlert('Error en la creación del análisis', "Ocurrió un error, por favor revise los datos.");
       }
     });
   }

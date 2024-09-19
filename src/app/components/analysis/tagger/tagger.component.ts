@@ -10,7 +10,7 @@ import { ObservationDto } from '../../../../types';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import Swal from 'sweetalert2'
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-tagger',
@@ -38,7 +38,8 @@ export class TaggerComponent implements OnInit {
     public dialogRef: MatDialogRef<TaggerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private analysisService: AnalysisService) {
+    private analysisService: AnalysisService,
+    private themeService: ThemeService) {
     this.tagForm = this.fb.group({
       prediction: ['', Validators.required],
       observations: ['']
@@ -62,21 +63,11 @@ export class TaggerComponent implements OnInit {
         next: response => {
           console.log('Se agregó el tag al análisis', response);
           this.dialogRef.close({ refresh: true });
-          Swal.fire({
-            icon: "success",
-            title: "Se agregó el tag al análisis",
-            showConfirmButton: false,
-            timer: 5000
-          });
+          this.themeService.showSuccesToast('Se agregó el tag al análisis!');
         },
         error: error => {
           console.error('Error al etiquetar el análisis', error)
-          Swal.fire({
-            title: 'Error!',
-            text: 'Error al etiquetar el análisis, debe tener permisos de usuario avanzado',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-          })
+          this.themeService.showErrorAlert('Error!', 'Error al etiquetar el análisis, debe tener permisos de usuario avanzado');
         }
       });
     }

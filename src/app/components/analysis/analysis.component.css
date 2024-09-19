@@ -9,9 +9,8 @@
 
   .classified-img {
     aspect-ratio: 1;
-    object-fit:contain;
+    object-fit: contain;
     display: block;
-
   }
 
   .user {
@@ -50,7 +49,7 @@ mat-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.mat-card-hover:not(:has(p-image:hover)):hover  {
+.mat-card-hover:not(:has(p-image:hover)):hover {
   transform: scale(1.02);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -95,9 +94,7 @@ mat-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 0.6rem 1rem;
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }

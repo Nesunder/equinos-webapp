@@ -15,7 +15,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } f
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
-import Swal from 'sweetalert2'
+import { ThemeService } from '../../../services/theme.service';
 
 const MY_FORMATS = {
   parse: {
@@ -73,6 +73,7 @@ export class HorseDataComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
     private horseService: HorseService,
+    private themeService: ThemeService
   ) {
     this.horseForm = this.fb.group({
       name: [''],
@@ -143,21 +144,11 @@ export class HorseDataComponent implements OnInit {
         console.log('Se modificó el caballo:', response);
         this.originalHorseData = this.horse
         this.notifyMustRefresh.emit(true);
-        Swal.fire({
-          icon: "success",
-          title: "Se modificó el caballo:",
-          showConfirmButton: false,
-          timer: 5000
-        });
+        this.themeService.showSuccesToast('Se modificó el caballo!');
       },
       error: error => {
         console.error('Error al editar el caballo', error)
-        Swal.fire({
-          title: 'Error!',
-          text: 'Error al editar el caballo, debe tener permisos de usuario avanzado',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        })
+        this.themeService.showErrorAlert('Error!', 'Error al editar el caballo, debe tener permisos de usuario avanzado');
       }
     });
   }
