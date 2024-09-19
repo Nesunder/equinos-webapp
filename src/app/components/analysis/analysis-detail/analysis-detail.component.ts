@@ -95,6 +95,12 @@ export class AnalysisDetailComponent implements OnInit {
   }
 
   toggleEditObservations(): void {
+    const userRole = localStorage.getItem('role');
+    if (userRole === 'USER') {
+      this.themeService.showErrorAlert('', 'Error al editar el análisis, debe tener permisos de usuario avanzado');
+      return;
+    }
+
     if (this.isEditingObservations) {
       this.saveObservations();
     }

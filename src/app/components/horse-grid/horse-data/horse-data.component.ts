@@ -100,6 +100,12 @@ export class HorseDataComponent implements OnInit {
   }
 
   toggleEditHorse(): void {
+    const userRole = localStorage.getItem('role');
+    if (userRole === 'USER') {
+      this.themeService.showErrorAlert('', 'Error al editar el caballo, debe tener permisos de usuario avanzado');
+      return;
+    }
+
     if (this.isEditingHorse) {
       this.saveHorseDetails();
     }

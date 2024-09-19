@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AnalysisService } from '../../services/analysis.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { TaggerComponent } from './tagger/tagger.component';
+import { ThemeService } from '../../services/theme.service';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class AnalysisComponent implements OnInit {
   classifiedFullImageUrl: string = '';
 
   constructor(public dialog: MatDialog, private analysisService: AnalysisService,
+    private themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
@@ -107,6 +109,12 @@ export class AnalysisComponent implements OnInit {
   }
 
   tagAnalysis() {
+    const userRole = localStorage.getItem('role');
+    if (userRole === 'USER') {
+      this.themeService.showErrorAlert('', 'Error al etiquetar el análisis, debe tener permisos de usuario avanzado');
+      return;
+    }
+
     const dialogRef = this.dialog.open(TaggerComponent, {
       width: '60%',
       maxWidth: '400px',
