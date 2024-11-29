@@ -9,7 +9,7 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private apiUrl: string = 'http://localhost:8080/api'
+  private apiUrl: string = 'http://equinosapp-api-production.up.railway.app/api'
 
   post<T>(url: string, body: any, options: any): Observable<T> {
     return this.httpClient.post<T>(`${this.apiUrl}${url}`, body, options) as Observable<T>;

@@ -23,6 +23,10 @@ export class ImageService {
   getCompressedHorseImage(imageName: string): string {
     return this.apiService.getImage("horses", imageName, true);
   }
+
+  getCompressedUserImage(imageName: string): string {
+    return this.apiService.getImage("users", imageName, true);
+  }
 }
 
 /**

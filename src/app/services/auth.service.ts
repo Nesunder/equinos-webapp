@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'http://equinosapp-api-production.up.railway.app/api/auth';
 
   constructor(private http: HttpClient) { }
 
   login(identification: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, { identification, password });
   }
-
+  
   createUser(username: string, email: string, password: string, advancedUser: boolean) {
     let url: string = `${this.apiUrl}/register`
     if (advancedUser) {
@@ -28,6 +28,7 @@ export class AuthService {
     localStorage.setItem('role', data.role);
     localStorage.setItem('email', data.email);
     localStorage.setItem('username', data.username);
+    localStorage.setItem('image', data.image)
   }
 
   isLoggedIn(): boolean {
