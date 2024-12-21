@@ -53,7 +53,7 @@ export class AnalysisComponent implements OnInit {
       }
     });
 
-    // Subscribe to the Subject to get updates without closing the dialog
+    // Susbcripción al sujeto para poder recibir actualizaciones sin cerrar el diálogo
     dialogRef.componentInstance.dataSubject.subscribe(result => {
       if (result.update) {
         this.updateGrid = true;

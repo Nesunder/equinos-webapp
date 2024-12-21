@@ -12,7 +12,6 @@ export class ImageUploadComponent {
   onFileSelected(event: Event) {
     const files = (event.target as HTMLInputElement).files != null;
     if (files) {
-      // Handle file upload logic here
     }
   }
 }
