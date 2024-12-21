@@ -124,7 +124,7 @@ export class HorseDataComponent implements OnInit {
         this.horse = updatedHorse;
         this.editHorse();
       } else {
-        console.log('No changes detected in horse details');
+        console.log('No se detectaron cambios en los detalles del equino');
       }
     }
   }
