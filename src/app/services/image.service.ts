@@ -32,7 +32,7 @@ export class ImageService {
 /**
  * Convierte un string base64 en un objeto File.
  * @param base64String - La imagen en formato base64.
- * @param fileName - El nombre del archivo que deseas crear.
+ * @param fileName - El nombre del archivo que se desea crear.
  * @returns Un objeto File.
  */
 export function base64ToFile(base64String: string, fileName: string): File {

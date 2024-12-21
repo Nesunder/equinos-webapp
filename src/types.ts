@@ -4,7 +4,7 @@ export interface Analysis {
   id: number;
   user: User;
   horse: Horse;
-  image: string;  // or ArrayBuffer, depending on how you handle binary data
+  image: string;
   predictionDetail: PredictionDetail;
   observations: string;
   DISGUSTADO: [],
@@ -23,13 +23,13 @@ export interface Horse {
   id: number;
   name: string;
   sexo: Gender;
-  dateOfBirth: string;  // Expecting format 'DD-MM-YYYY'
+  dateOfBirth: string;  // Formato esperado 'DD-MM-YYYY'
   entrenamiento: boolean;
   estabulacion: boolean;
   salidaAPiquete: boolean;
   dolor: boolean;
   image?: string;
-  compressedImage?: string;  // or ArrayBuffer
+  compressedImage?: string;
   observations: string;
 }
 

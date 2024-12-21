@@ -27,7 +27,7 @@ export class HorseDetailComponent implements OnInit {
 
   notifyRefresh() {
     const resultData = { update: true };
-    this.dataSubject.next(resultData);  // Emit data to subscribers
+    this.dataSubject.next(resultData);
   }
 
 }
